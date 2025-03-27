@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .query-box {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .answer {
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+            margin-top: 20px;
+        }
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RAG Document Q&A System</h1>
+        <p>Ask questions about the documents in the knowledge base:</p>
+        
+        <div class="query-box">
+            <input 
+                type="text" 
+                id="queryInput" 
+                placeholder="What would you like to know about these documents?"
+            >
+            <button onclick="askQuestion()">Ask</button>
+        </div>
+        
+        <div id="answerContainer" style="display: none;">
+            <h3>Answer:</h3>
+            <div id="answer" class="answer"></div>
+        </div>
+        
+        <div id="loadingContainer" style="display: none;">
+            <p class="loading">Generating answer...</p>
+        </div>
+    </div>
+
+    <script>
+        async function askQuestion() {
+            const query = document.getElementById('queryInput').value.trim();
+            
+            if (!query) {
+                alert('Please enter a question.');
+                return;
+            }
+            
+            document.getElementById('answerContainer').style.display = 'none';
+            document.getElementById('loadingContainer').style.display = 'block';
+            
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query }),
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('answer').textContent = data.answer;
+                document.getElementById('answerContainer').style.display = 'block';
+            } catch (error) {
+                document.getElementById('answer').textContent = 'Error: ' + error.message;
+                document.getElementById('answerContainer').style.display = 'block';
+            } finally {
+                document.getElementById('loadingContainer').style.display = 'none';
+            }
+        }
+        
+        // Allow Enter key to submit query
+        document.getElementById('queryInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                askQuestion();
+            }
+        });
+    </script>
+</body>
+</html>
