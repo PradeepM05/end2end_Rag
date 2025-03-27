@@ -2,7 +2,8 @@ import logging
 from datetime import datetime
 import os
 from dotenv import load_dotenv
-from pydantic import BaseSettings
+
+# Remove the BaseSettings import - not needed in this file
 
 def setup_logger():
     # Create logs directory if it doesn't exist

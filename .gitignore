@@ -34,4 +34,22 @@ env/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Environment files
+rag_project/config/production.env
+rag_project/config/*.env
+
+# Logs
+rag_project/logs/
+*.log
+
+# Data files
+rag_project/data/raw/
+rag_project/data/vector_store/
+rag_project/data/*.pdf
+rag_project/data/*.txt
+
+# Test files
+rag_project/tests/
+rag_project/src/test_*.py 
