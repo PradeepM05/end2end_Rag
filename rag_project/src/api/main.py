@@ -28,7 +28,7 @@ metrics = MetricsTracker()
 # Initialize FastAPI app
 app = FastAPI(title="RAG API", description="Retrieval-Augmented Generation API")
 
-# Declare global variables to avoid scope issues
+# Define global variables
 embedder = None
 vector_store = None
 retriever = None
@@ -46,7 +46,6 @@ try:
 
     if not vector_store:
         logger.error("Vector store not found. Please run the document processing and embedding steps first.")
-        # Don't raise exception to allow app to start
     else:
         retriever = EnhancedRetriever(vector_store, use_compression=settings.USE_COMPRESSION)
         generator = RAGGenerator(retriever, model_name=settings.MODEL_NAME)
