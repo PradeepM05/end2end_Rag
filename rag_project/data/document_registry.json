@@ -1,0 +1,30 @@
+{
+  "files": {
+    "raw\\attention.pdf": {
+      "last_modified": "2025-02-13T14:33:40.773559",
+      "file_size": 2215244,
+      "status": "processed",
+      "chunks": 0,
+      "last_processed": "2025-03-28T17:14:46.377889",
+      "deleted": false
+    },
+    "raw\\conversation.txt": {
+      "last_modified": "2025-03-08T13:37:44.232919",
+      "file_size": 1994,
+      "status": "processed",
+      "chunks": 0,
+      "last_processed": "2025-03-28T17:14:46.377889",
+      "deleted": false
+    },
+    "raw\\HANUMAN.pdf": {
+      "last_modified": "2025-03-23T21:12:14.573212",
+      "file_size": 734389,
+      "status": "processed",
+      "chunks": 0,
+      "last_processed": "2025-03-28T17:14:46.377889",
+      "deleted": false
+    }
+  },
+  "last_update": "2025-03-30T14:27:14.776277",
+  "vector_store_status": "up_to_date"
+}

@@ -9,3 +9,5 @@ fastapi>=0.104.1
 uvicorn>=0.23.2
 pydantic>=2.4.2
 langchain-community
+langchain-community>=0.0.5
+huggingface-hub>=0.16.4
